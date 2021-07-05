@@ -7,14 +7,6 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from holiday_planner.models import *
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-# View to save new users to database
-
->>>>>>> a3a932dce409083a7c6e35af7d3c9bcb24f84cc5
->>>>>>> 718c113696141d4fb8baffc1116040e0e814cf51
 
 def register(request):
     if request.method != 'POST':
@@ -29,13 +21,6 @@ def register(request):
     context = {'form': form}
     return render(request, 'registration/register.html', context)
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-# View for the Profile Page which displays all the user information.
->>>>>>> a3a932dce409083a7c6e35af7d3c9bcb24f84cc5
->>>>>>> 718c113696141d4fb8baffc1116040e0e814cf51
 @login_required
 def profile(request):
     context = {}
@@ -50,15 +35,7 @@ def profile(request):
     for review in reviews:
         review.nonrating = [i for i in range(5-review.rating)]
         review.rating = [i for i in range(review.rating)]
-<<<<<<< HEAD
         
-=======
-<<<<<<< HEAD
-        
-=======
-
->>>>>>> a3a932dce409083a7c6e35af7d3c9bcb24f84cc5
->>>>>>> 718c113696141d4fb8baffc1116040e0e814cf51
     for location in visited:
         visited_locations.append(location.location)
     context['locations'] = visited_locations
