@@ -1,0 +1,11 @@
+{% extends 'holiday_planner/base.html' %}
+{% block content %}
+<section class="query">
+    <form method="post">
+        {% csrf_token %}
+        lol
+      <input type="text" id="lname" name="lname">
+      <button type="submit">Load Locations</button>
+    </form>
+</section>
+{% endblock content %}

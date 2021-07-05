@@ -1,0 +1,164 @@
+{% extends 'holiday_planner/base.html' %} {% load static %} {% load index %} {% block content %}
+
+<section align="center" class="packages" id="packages" style="padding-top: 20rem;  width: 100vw;">
+	<h1 class="heading">
+        {% for i in letters %}
+		{% if i != ' ' %}
+		<span>{{ i }}</span>
+		{% else %}
+		&nbsp; &nbsp;
+		{% endif %}
+        {% endfor %}
+        </h1>
+
+    <div class="box-container", align="left">
+            <div class="box solo">
+        <div class="img">
+        <img src="{{ location.image_url }}" alt="">
+        </div>
+        <div class="content">
+            <h3><a href="{{ location.google_maps }}" target="_blank"><i class="fas fa-map-marker-alt map" mouseover="font-size: 5rem;"></i></a>{{ location.city }}, <b>{{ location.country }}{% if location.fav %}
+                <i class="fas fa-star buton-fav" id="{{ location.pk}}-fav" style="font-size: 4rem;"></i>
+                {% else %}
+                <i class="far fa-star buton-fav" id="{{ location.pk }}-fav" style="font-size: 4rem;"></i>
+<<<<<<< HEAD
+                {% endif %}</b> <br> {% for tag in tags %}
+=======
+<<<<<<< HEAD
+                {% endif %}</b> <br> {% for tag in tags %}
+=======
+                {% endif %}<br><h1 class="underline"></span></b> <br> {% for tag in tags %}
+>>>>>>> a3a932dce409083a7c6e35af7d3c9bcb24f84cc5
+>>>>>>> 718c113696141d4fb8baffc1116040e0e814cf51
+                <span><a color="#fff" href="{% url    'holiday_planner:tag' tag %}">#{{ tag }}</a></span>  
+            {% endfor %}</h3>
+            <p>{{ location.description }}</p>
+            <div class="stars">
+                
+            </div>
+            <div class="price">
+            </div>
+        </div>
+        </div>
+    </div>
+</section>
+<h1 style="padding-top: 2vh;font-size:3rem;" align="center">Weather Factors of <b>{{ location }}<br><i class="fas fa-cloud-sun-rain"></i></b>
+        </h1>
+    <section class="weather" align="center" style="padding-bottom: 3rem; padding-top: 5rem; width: 100vw;">
+        <div class="current" style="width: 350px; height: 350px; border: 7px solid #ffa500; border-radius: .5rem; background-image: url(https://i.pinimg.com/originals/87/9e/00/879e002a9082b4d32901840cb70c0929.gif); background-position: center;">
+            <div class="figure">
+                <h1 style="font-size: 3.5rem; padding-top: .5rem;">{{ location.city }}</h1>
+                <img style="padding-top: 1rem;" src="https://openweathermap.org/img/w/{{ icon }}.png" alt="">
+            </div>
+            <div class="content">
+                <h2 class="main" style="font-size: 5rem; margin-top: 20px;" id="temp"><span class="temp cel" id="{{ temp }}">{{ temp }}</span><span class="metric">°C</span> <i class="fas fa-arrows-alt-h convert" id="revert" style="cursor: pointer"></i></h2>
+                <h3 style="font-size: 3rem; ">{{ main }}</h3>
+            </div>
+        </div>
+        <img src="https://user-images.githubusercontent.com/3399429/55830109-8f1a9880-5b10-11e9-8efb-9fad5d2a2a92.gif" style="width: 70%; height: 70%; margin-left: 50px;" alt="">
+    </section>
+    <section class="weather" 
+    align="center" style="overflow-x: scroll;">;
+    {% for ic in icons %}
+        <div class="current" style="width: 350px; height: 350px; border: 7px solid #ffa500; border-radius: .5rem; background-image: url(https://mir-s3-cdn-cf.behance.net/project_modules/disp/c81fed16071075.562a501d5e911.gif);">
+            <div class="figure">
+                <h1 style="font-size: 3.5rem; padding-top: .5rem;">{{ location.city }}</h1>
+                <img style="padding-top: 1rem;" src="https://openweathermap.org/img/w/{{ ic }}.png" alt="">
+            </div>
+            <div class="content">
+                
+                <h2 class="main" style="font-size: 2rem; margin-top: 20px;"> min: <span class="temp cel" id="{{ mins|index:forloop.counter0 }}">{{ mins|index:forloop.counter0 }}</span><span class="metric"> °C </span><br>
+                     max: <span class="temp cel" id="{{ maxes|index:forloop.counter0 }}">{{ maxes|index:forloop.counter0 }}</span><span class="metric">°C</span><br><i class="fas fa-arrows-alt-h convert" id="revert-2"></i></h2>
+                <h3 style="font-size: 3rem; ">{{ description|index:forloop.counter0 }}<br></h3>
+                
+            </div>
+            <div style="padding-top: 1vh;">
+            <h2 class="btn lol" ><b>{{ days|index:forloop.counter0 }}</b></h2>
+            </div>
+            
+        </div>&nbsp; &nbsp; &nbsp;
+        {% endfor %}
+    </section>
+
+    <section class="contact" id="contact" style="padding-top: 50px;">
+    
+    <div class="row">
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="inputBox">
+                <input name="title" type="title" placeholder="heading">
+                <input style="display: none;" type="number" id="rating" name="rating" min="1" max="5">
+            </div>
+            <textarea name="text" placeholder="message" name="" id="" cols="30" rows="10"></textarea>
+            <i class="far fa-star star" id="1"></i><i class="far fa-star star" id="2"></i><i class="far fa-star star" id="3"></i><i class="far fa-star star" id="4"></i><i class="far fa-star star" id="5"></i><br>
+            <input type="submit" class="btn" value="send message">
+            
+        </form>
+    </div>
+    
+</section>
+
+    <section class="review" id="review">
+
+    <h1 class="heading">
+        <span>r</span>
+        <span>e</span>
+        <span>v</span>
+        <span>i</span>
+        <span>e</span>
+        <span>w</span>
+		<span>s</span>
+    </h1>
+
+    <div class="swiper-container review-slider">
+		{% for review in reviews %}
+        <div class="swiper-wrapper">
+			
+            <div class="swiper-slide">
+                <div class="box">
+                    <img src="https://img2.pngio.com/parent-directory-avatar-2png-39-864856-png-images-pngio-avatar-2-png-256_256.png" alt="">
+                    <h3>{{ review.user.username }}</h3>
+                    <h1>{{ review.title }}</h1>
+                    <p>{{ review.text }}</p>
+                    <div class="stars">
+                        {% for star in review.rating %}
+                            <i class="fas fa-star"></i>
+                            {% endfor %}
+                            {% for star in review.nonrating %}
+                        <i class="far fa-star"></i>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            
+                </div>
+				{% empty %}
+				<h1>No reviews yet...</h1>
+		{% endfor %}
+            </div>
+</section>
+<script>
+    let favtoggle = document.querySelector('.buton-fav')
+    favtoggle.addEventListener("click", () => {
+        $.ajax({
+        url: 'https://airborne.kk1729.repl.co/favourite/'+ favtoggle.id.toString().split('-')[0],
+        dataType: 'json',
+        success: function (data) {
+          if (data) {
+              if (favtoggle.classList.contains('fas')){
+                  favtoggle.classList.remove('fas')
+                  favtoggle.classList.add('far')
+              } else {
+                  favtoggle.classList.add('fas')
+                  favtoggle.classList.remove('far')
+              }
+          }
+        }
+      });
+
+    })
+</script>
+<script src="{% static 'js/temp.js' %}"></script>
+
+{% endblock content %}

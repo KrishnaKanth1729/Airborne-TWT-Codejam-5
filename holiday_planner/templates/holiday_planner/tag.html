@@ -1,0 +1,88 @@
+{% extends 'holiday_planner/base.html' %}
+{% load index %}
+{% block content %}
+
+    <section class="packages" id="packages" style="padding-top: 10rem;">
+        <h1 class="heading">
+            <span>{{ tag }}</span>
+        </h1>
+    <div class="box-container">
+            {% for location in locations %}
+            <div class="box">
+        <img src="{{ location.image_url }}" alt="">
+        <div class="content">
+            <h3><i class="fas fa-map-marker-alt"></i>{% if location.city != location.country %}{{ location.city }}, <b>{{ location.country }}</b>{% else %}<b>{{ location.country }}</b>
+				{% endif %} {% if location in fav %}
+                <i class="fas fa-star buton-fav" id="{{ location.pk}}-fav" style="font-size: 4rem;"></i>
+                {% else %}
+                <i class="far fa-star buton-fav" id="{{ location.pk }}-fav" style="font-size: 4rem;"></i>
+                {% endif %}<br> {% for tag in items|index:forloop.counter0 %}{% for t in tag %}
+                <span><a color="#fff" href="{% url    'holiday_planner:tag' t.name %}">#{{ t }}</a></span>{% endfor %}  
+            {% endfor %}</h3>
+            <p>{{ location.description }}</p>
+            <div class="stars">
+              {% if location in visited %}
+               <h1><i id="{{ location.pk }}" class="remove far fa-check-circle yes visit" style="color:green; font-size: 5rem;"></i>Visited</h1>
+                
+                {% else %}
+                <h1>
+                <i id="{{ location.pk }}" class="far fa-times-circle visit no" style="color: red; font-size: 5rem; cursor: pointer;"></i>Visited</h1>
+                
+                {% endif %}
+            </div>
+            <div class="price">
+            <a class="btn" href="{% url 'holiday_planner:location' location.pk %}">Learn More</a>
+            </div>
+        </div>
+        </div>
+            {% endfor %}
+    </div>
+
+    </section>
+    <script>
+    let favtoggles = [...document.querySelectorAll('.buton-fav')]
+    favtoggles.forEach(favtoggle => {
+    favtoggle.addEventListener("click", () => {
+        $.ajax({
+        url: 'https://airborne.kk1729.repl.co/favourite/'+ favtoggle.id.toString().split('-')[0],
+        dataType: 'json',
+        success: function (data) {
+          if (data) {
+              if (favtoggle.classList.contains('fas')){
+                  favtoggle.classList.remove('fas')
+                  favtoggle.classList.add('far')
+              } else {
+                  favtoggle.classList.add('fas')
+                  favtoggle.classList.remove('far')
+              }
+          }
+        }
+      });
+})
+    })
+let visitButtons = [...document.querySelectorAll('.visit')]
+
+visitButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        $.ajax({
+        url: 'https://airborne.kk1729.repl.co/visit/'+ button.id.toString(),
+        dataType: 'json',
+        success: function (data) {
+          if (data) {
+              if (button.classList.contains('fa-times-circle')){
+                  button.classList.remove('fa-times-circle')
+                  button.classList.add('fa-check-circle')
+                  button.style.color = 'green'
+              } else {
+                  button.classList.add('fa-times-circle')
+                  button.classList.remove('fa-check-circle')
+                  button.style.color = 'red'
+              }
+          }
+        }
+      });
+    })
+})
+
+</script>
+{% endblock content %}

@@ -1,0 +1,98 @@
+header{
+  position: fixed;
+  top:0; left: 0; right:0;
+  background:rgba(0,0,0,.3);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding:2rem 9%;
+  padding-top: 5px;
+}
+
+header .logo{
+  font-size: 2.5rem;
+  font-weight: bolder;
+  color:#fff;
+  text-transform: uppercase;
+  padding-left: 2rem;
+  margin: 0;
+}
+
+header .logo span{
+  color:var(--orange);
+}
+
+header {
+  background: rgba(2, 2, 2, 0);
+}
+
+header::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.logo {
+  float: left;
+  padding: 10px 0;
+}
+
+nav {
+    align-items: center;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  display: inline-block;
+  margin-left: 40px;
+  padding-top: 23px;
+
+  position: relative;
+}
+
+nav a {
+  color: var(--orange);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 2rem;
+  transition: all ease-in-out 250ms;
+}
+
+nav a:hover {
+  color: #fff;
+}
+
+nav a::before {
+  content: '';
+  display: block;
+  height: 5px;
+  border-radius: .5rem;
+  background-color: var(--orange);
+
+  position: absolute;
+  top: 0;
+  width: 0%;
+
+  transition: all ease-in-out 250ms;
+}
+
+nav a:hover::before {
+  width: 100%;
+}
+
+header .icons i{
+  font-size: 2.5rem;
+  color:#fff;
+  cursor: pointer;
+  margin-right: 2rem;
+}
+
+header .icons i:hover{
+  color:var(--orange);
+}

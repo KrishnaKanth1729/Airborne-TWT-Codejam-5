@@ -1,0 +1,2 @@
+language = "python3"
+run = "gunicorn core.wsgi --bind 0.0.0.0:5000"

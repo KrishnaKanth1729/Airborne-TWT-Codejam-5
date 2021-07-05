@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airborne</title>
+    <link rel = "icon" href = 
+"https://img.pngio.com/travel-free-vector-icons-designed-by-good-ware-instagram-travel-icon-png-512_512.png" 
+        type = "image/x-icon">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+
+    <script src="{% static 'js/script.js' %}" defer></script>
+</head>
+<body>
+    <div id="preloader"></div>
+    
+    <header>
+        <div id="menu-bar" class="fas fa-bars" style="padding-right: 1rem;"></div>
+<<<<<<< HEAD
+        <h1 style="margin-top:: 5rem; padding-top: 28px; cursor: pointer;" class="logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Airplane_silhouette_orange.svg/1024px-Airplane_silhouette_orange.svg.png" alt="" width="50px" height="50px">Airborne</h1>
+=======
+<<<<<<< HEAD
+        <h1 style="margin-top:: 5rem; padding-top: 28px; cursor: pointer;" class="logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Airplane_silhouette_orange.svg/1024px-Airplane_silhouette_orange.svg.png" alt="" width="50px" height="50px">Airborne</h1>
+=======
+        <h1 style="margin-top:: 5rem;" class="logo">AIRBORNE</h1>
+>>>>>>> a3a932dce409083a7c6e35af7d3c9bcb24f84cc5
+>>>>>>> 718c113696141d4fb8baffc1116040e0e814cf51
+        
+    <div class="container">
+      
+
+      <nav class="navada">
+        <ul>
+          <li><a href="{% url 'holiday_planner:index' %}"><i class="fas fa-home"></i>&nbsp;Home</a></li>
+          {% if page == 'home' %}
+          <li><a href="#packages"><i class="fas fa-plane-departure        loc-button"></i>
+          &nbsp;Locations</a></li>
+          {% else %}
+          <li><a href="{% url 'holiday_planner:all' %}#packages"><i class="fas fa-plane-departure        loc-button"></i>
+          &nbsp;Locations</a></li>
+          {% endif %}
+          <li><a href="{% url 'users:profile' %}"><i class="far fa-user"></i>&nbsp;Profile</a></li>
+          <li><a href="{% url 'holiday_planner:all' %}#contact"><i class="fas fa-phone"></i>&nbsp;Contact</a></li>
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'users:logout' %}"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</a></li>
+          {% else %}
+           <li><a href="{% url 'users:login' %}"><i class="fas fa-sign-in-alt"></i></i>&nbsp;Login</a></li>
+          {% endif %}
+          
+        </ul>
+        
+      </nav>
+    </div>
+  </header>
+    <div class="login-form-container">
+        <i class="fas fa-times" id="form-close"></i>
+        <form action="">
+            <h3><i class="user fas fa-user"></i> {% if user.is_authenticated %} {{ user.username }} {% else %} 
+			Registration {% endif %}</h3>
+            {% if user.is_authenticated %}
+            <a href="{% url 'users:profile' %}" class="btn">Profile <i class="fas fa-id-badge"></i></a>
+            <a href="{% url 'users:logout' %}" class="btn">Logout <i class="fas fa-sign-out-alt"></i></a>
+            {% else %}
+            <a href="{% url 'users:login' %}" class="btn">Login <i class="far fa-user"></i></a>
+            <a href="{% url 'users:register' %}" class="btn">Register <i class="far fa-hand-point-up"></i></a>
+            {% endif %}
+        </form>
+    </div>
+
+    {% block content %}
+    {% endblock content %}
+    <section class="packages">
+
+    </section>
+    <script src="{% static 'js/hover.js' %}"></script>
+</body>
+</html>

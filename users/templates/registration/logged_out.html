@@ -1,0 +1,10 @@
+{% extends 'holiday_planner/base.html' %}
+{% block content %}
+<section>
+<h1 align="center" style="padding-top: 15rem;">You have been logged out!</h1>
+</section>
+<script>
+    alert("You have been Logged Out!")
+    window.location = "{% url 'holiday_planner:all' %}"
+</script>
+{% endblock content %}

@@ -1,0 +1,171 @@
+{% extends 'holiday_planner/base.html' %}
+{% block content %}
+{% load index %}
+{% load static %}
+<div class="padd" style="padding-top:10rem;"></div>
+<h1 class="heading">
+        {% for char in user.username %}
+        <span>{{ char }}</span>
+        {% endfor %}
+        <span>'s</span>
+        <div style="padding-top:2rem;"></div>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br>
+        <span>P</span>
+        <span>r</span>
+        <span>o</span>
+        <span>f</span>
+        <span>i</span>
+        <span>l</span>
+        <span>e</span>
+    </h1>
+<section class="packages" id="packages">
+    
+    <h1 align="center">Visited Places</h1>
+    <div class="box-container">
+            {% for location in locations %}
+            <a href=""></a><div class="box visitor" id="{{ location.pk }}-box">
+<<<<<<< HEAD
+                <div class="img">
+        <img src="{{ location.image_url }}" alt="">
+        </div>
+=======
+<<<<<<< HEAD
+                <div class="img">
+        <img src="{{ location.image_url }}" alt="">
+        </div>
+=======
+        <img src="{{ location.image_url }}" alt="">
+>>>>>>> a3a932dce409083a7c6e35af7d3c9bcb24f84cc5
+>>>>>>> 718c113696141d4fb8baffc1116040e0e814cf51
+        <div class="content">
+            <h3><i class="fas fa-map-marker-alt"></i>{% if location.city != location.country %}{{ location.city }}, <b>{{ location.country }}</b>{% else %}<b>{{ location.country }}</b>
+				{% endif %}<br> {% for tag in location.types.all %}
+                <span><a color="#fff" href="{% url    'holiday_planner:tag' tag %}">#{{ tag }}</a></span>  
+            {% endfor %}
+            </h3>
+            <p>{{ location.description }}...</p>
+            <div class="stars">
+
+               <h1><i id="{{ location.pk }}" class="far fa-check-circle yes visit" style="color:green; font-size: 5rem; cursor: pointer;"></i>Visited</h1>
+
+            </div>
+            <div class="price">
+            <a class="btn" href="{% url 'holiday_planner:location' location.pk %}">Know More</a>
+            </div>
+        </div>
+        </div>
+        <h1 id="no-card-heading" class="no-card-heading" align="center" style="display: none; text-align: center;">You haven't visited any places yet...</h1>
+
+        {% empty %}
+        <h1 class="no-card-heading" align="center" style="text-align: center;">You haven't visited any places yet...</h1>
+            {% endfor %}
+    </div>
+    <h1 style="padding-top: 2rem;" align="center">Search History</h1>
+        <div align="center">
+    {% for item in search %}
+<form style="display: none;" action="{% url 'holiday_planner:all' %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="search" id="searcher">
+<button id="formButton" type="submit"></button>
+</form>
+        <div class="btn" onclick="redirect('{{ item.query }}')">{{ item.query }}<br>{{ item.query_time }}</div>
+
+    {% endfor %}
+            </div>
+    </section>
+
+    <section class="packages" id="packages">
+    
+    <h1 align="center">Favourite Places</h1>
+    <div class="box-container">
+            {% for location in liked %}
+            <a href=""></a><div class="box favourite {{ location.pk }}-fav favbox" id="{{ location.pk }}-favbox">
+<<<<<<< HEAD
+                <div class="img">
+        <img src="{{ location.image_url }}" alt="">
+        </div>
+=======
+<<<<<<< HEAD
+                <div class="img">
+        <img src="{{ location.image_url }}" alt="">
+        </div>
+=======
+        <img src="{{ location.image_url }}" alt="">
+>>>>>>> a3a932dce409083a7c6e35af7d3c9bcb24f84cc5
+>>>>>>> 718c113696141d4fb8baffc1116040e0e814cf51
+        <div class="content">
+            <h3><i class="fas fa-map-marker-alt"></i>{% if location.city != location.country %}{{ location.city }}, <b>{{ location.country }}</b>{% else %}<b>{{ location.country }}</b>
+				{% endif %}{% if location in liked %}<i id="{{ location.pk }}-fav" class="fas fa-star fav" style="padding-left: 2px;"></i>{% else %}<i id="{{ location.pk }}-fav" class="far fa-star fav" style="padding-left: 2px;"></i>{% endif %}<br> {% for tag in location.types.all %}
+                <span><a color="#fff" href="{% url    'holiday_planner:tag' tag %}">#{{ tag }}</a></span>  
+            {% endfor %}
+            </h3>
+            <p>{{ location.description }}...</p>
+            <div class="stars">
+
+            </div>
+            <div class="price">
+            <a class="btn" href="{% url 'holiday_planner:location' location.pk %}">Know More</a>
+            </div>
+        </div>
+        </div>
+        <h1 id="no-card-heading" class="no-card-heading" align="center" style="display: none; text-align: center;">You don't have any favourite places yet...</h1>
+
+        {% empty %}
+        <h1 class="no-card-heading" align="center" style="text-align: center;">You do not have any favourite places yet...</h1>
+            {% endfor %}
+    </div>
+
+    <section class="review" id="review">
+
+    <h1 class="heading">
+        <span>r</span>
+        <span>e</span>
+        <span>v</span>
+        <span>i</span>
+        <span>e</span>
+        <span>w</span>
+		<span>s</span>
+    </h1>
+
+    <div class="swiper-container review-slider ">
+		{% for review in reviews %}
+        <div class="swiper-wrapper user-review" id="{{ review.id }}-review" style="transition: .2s;">
+			
+            <div class="swiper-slide">
+                <div class="box" id="{{ review.id }}-review">
+                    <img src="https://img2.pngio.com/parent-directory-avatar-2png-39-864856-png-images-pngio-avatar-2-png-256_256.png" alt="">
+                    <h1 align="right" style="padding-bottom: 3rem;"><i style="cursor: pointer;" id="{{ review.id }}" class="fas fa-times delete-review"></i></h1>
+                    <h3>You (<b>{{ review.user.username }}</b>)</h3>
+                    
+                    <h1>{{ review.title }}</h1>
+                    <p>{{ review.text }}</p>
+                    <div class="stars">
+
+                            {% for star in review.rating %}
+                            <i class="fas fa-star"></i>
+                            {% endfor %}
+                            {% for star in review.nonrating %}
+                        <i class="far fa-star"></i>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>&nbsp;&nbsp;&nbsp;
+            
+                </div>
+				{% empty %}
+                <h1>You haven't reviewed any locations yet</h1>
+		{% endfor %}
+        <h1 id="no-review-text"></h1>
+            </div>
+</section>
+<script src="{% static 'js/locations1.js' %}"></script>
+<script>
+    let searcher = document.querySelector("#searcher")
+let butn = document.querySelector("#formButton")
+    function redirect(query){
+    searcher.value = query
+    butn.click()
+}
+
+</script>
+{% endblock content %}

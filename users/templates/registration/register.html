@@ -1,0 +1,21 @@
+{% extends 'holiday_planner/base.html' %}
+{% block content %}
+<div class="login-form-container active">
+
+
+<form method="post">
+    {% csrf_token %}
+    <h3>Create a New Account</h3>
+    {% if form.errors %}
+<h1 class="btn" mouseover="color: black;">{{ form.errors }}</h1>
+{% endif %}
+    <input type="text" name="username" class="box" placeholder="username">
+<input type="password" name="password1" class="box" placeholder="enter your password">
+<input type="password" name="password2" class="box" placeholder="confirm password">
+<p>home <a href="{% url 'holiday_planner:all' %}">click here</a></p>
+<p>already have and account? <a href="{% url 'users:login' %}">Login</a></p>
+<button type="submit" class="btn">Register</button>
+
+</form>
+</div>
+{% endblock content %}

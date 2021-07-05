@@ -1,0 +1,27 @@
+{% extends 'holiday_planner/base.html' %}
+{% block content %}
+<div class="login-form-container active">
+
+
+<form method="post">
+    {% csrf_token %}
+    <h3>Login to Your Account.</h3>
+        {% if form.errors %}
+<h1 class="btn error" mouseover="color: black;">There was an error in the form. Please enter the right password. Note that both the fields are case sensitive.</h1>
+{% endif %}
+    <input type="text" name="username" class="box">
+<input type="password" name="password" class="box">
+<p>home <a href="{% url 'holiday_planner:all' %}">click here</a></p>
+<p>don't have and account? <a href="{% url 'users:register' %}">register now</a></p>
+<button type="submit" class="btn">Login</button>
+</form>
+</div>
+<script>
+    let error = document.getElementsByTagName('li')[0]
+    error.style.display = 'none'
+    {% if user.is_authenticated %}
+    alert("you are already logged in as {{ user.username }}")
+    window.location = "{% url 'holiday_planner:all' %}"
+    {% endif %}
+</script>
+{% endblock content %}

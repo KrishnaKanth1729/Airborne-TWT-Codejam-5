@@ -1,0 +1,143 @@
+{% extends 'holiday_planner/base.html' %} {% load static %} {% load index %} {% block content %}
+<<<<<<< HEAD
+<link rel="stylesheet" href="{% static 'css/header.css' %}">
+=======
+<<<<<<< HEAD
+<link rel="stylesheet" href="{% static 'css/header.css' %}">
+=======
+>>>>>>> a3a932dce409083a7c6e35af7d3c9bcb24f84cc5
+>>>>>>> 718c113696141d4fb8baffc1116040e0e814cf51
+<section class="home" id="home">
+	<div class="content">
+		<h3>One Mile at a Time.</h3>
+		<p>Discover the best holiday spots in the world, Adventure awaits.</p>
+		<a id="loc-button" href="#packages" class="btn loc-button">Get your holiday spot</a>
+	</div>
+	<div class="video-container">
+		<img src="https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77702102702.jpg" alt="">
+	</div>
+
+</section>
+<div class="padd" style="padding-top: 1rem;"></div>
+<section class="packages" id="packages">
+	<h1 class="heading">
+		<span>l</span>
+            <span>o</span>
+            <span>c</span>
+            <span>a</span>
+            <span>t</span>
+            <span>i</span>
+            <span>o</span>
+            <span>n</span>
+            <span>s</span>
+        </h1> 
+        {% if search != '' %}
+        <h1 class="heading">
+            <span>Search: </span>&nbsp; &nbsp;
+            {% for char in search %}
+            <span>{{ char }}</span>
+            {% endfor %}
+        </h1>
+        {% endif %}
+        {% if user.is_authenticated %}
+    <form id="scroll-bar" class="search-bar-container" id="search" method="post" style="padding-bottom:2rem;">
+        {% csrf_token %}
+            <input type="search" name="search" id="search-bar" placeholder="search here for cities, countries, factors...">
+            <button style="transform: translateY(-.7rem); margin-left: .2rem;" class="btn" type="submit" >Search</button>
+    </form>
+    {% endif %}
+    <div style="padding-bottom: 1rem;"></div>
+    <div class="box-container">
+            {% for location in locations %}
+            <div class="box"  style="cursor: pointer;">
+                <div class="img">
+        <img src="{{ location.image_url }}" alt=""></div>
+        <div class="content">
+            <h3 style="padding-bottom: 10px;"><i class="fas fa-map-marker-alt map"></i>{% if location.city != location.country %}{{ location.city }}, <b>{{ location.country }}</b>{% else %}<b>{{ location.country }}</b>
+				{% endif %}{% if location in favourite_locations %}<i id="{{ location.pk }}-fav" class="fas fa-star fav" style="padding-left: 2px;"></i>{% else %}<i id="{{ location.pk }}-fav" class="far fa-star fav" style="padding-left: 2px;"></i>{% endif %} <br> {% for tag in location.types.all %}
+                <span class="tag"><a color="#fff" href="{% url    'holiday_planner:tag' tag %}">#{{ tag }}</a></span>  
+            {% endfor %}</h3>
+            <p>{{ location.description }}...</p>
+            <div class="stars">
+                {% if location.visited %}
+               <h1><i id="{{ location.pk }}" class="remove far fa-check-circle yes visit" style="color:green; font-size: 5rem;"></i>Visited</h1>
+                
+                {% else %}
+                <h1>
+                <i id="{{ location.pk }}" class="far fa-times-circle visit no" style="color: red; font-size: 5rem; cursor: pointer;"></i>Visited</h1>
+                
+                {% endif %}
+            </div>
+            <div class="price">
+            <a class="btn" href="{% url 'holiday_planner:location' location.pk %}">Learn More</a>
+            </div>
+        </div>
+        </div>
+        {% empty %}
+        <h1 style="padding: 4rem;">No results were found</h1>
+            {% endfor %}
+    </div>
+
+    </section>
+   <section class="contact" id="contact" style="padding-top: 2rem;">
+
+    <h1 class="heading">
+        <span>C</span>
+        <span>O</span>
+        <span>N</span>
+        <span>T</span>
+        <span>A</span>
+        <span>C</span>
+        <span>T</span>
+        &nbsp; &nbsp;
+        <span>M</span>
+        <span>E</span>
+
+    </h1>
+
+    <div class="row">
+
+        <div class="image">
+            <img class="tilt" src="https://res.cloudinary.com/devr/image/upload/v1620796762/devR/cfe6lamuze8mwiofpslk.svg" alt="">
+        </div>
+
+        <form method="post" id="form-con">
+            {% csrf_token %}
+            <div class="inputBox">
+                <input type="text" name="name" placeholder="name" id="form-name">
+                <input type="email" name="email" placeholder="email" id="form-email">
+            </div>
+
+            <textarea placeholder="feedback" name="feedback" id="form-feedback" cols="30" rows="10"></textarea>
+
+            <input type="submit" class="btn" id="con-but"  value="send message">
+
+        </form>
+
+    </div>
+
+</section>
+<script>
+    let form = document.getElementById('form-con'); // selecting the form
+
+form.addEventListener('submit', function(event) { // 1
+    event.preventDefault()
+    
+    let data = new FormData(); // 2
+    
+    data.append("name", document.getElementById('form-name').value)  
+    data.append("email", document.getElementById('form-email').value)
+    data.append("feedback", document.getElementById('form-feedback').value)
+    data.append("csrfmiddlewaretoken", '{{csrf_token}}') // 3
+    
+    axios.post('https://airborne.kk1729.repl.co/email/', data) // 4
+     .then(res => alert("Form Submitted")) // 5
+     .catch(errors => console.log(errors)) // 6
+
+})
+</script>
+<script src="{% static 'js/locations.js' %}"></script>
+<script src="{% static 'js/hover.js' %}"></script>
+<script src="{% static 'js/favourites.js' %}"></script>
+<script src="{% static 'js/email.js' %}"></script>
+{% endblock content %}
