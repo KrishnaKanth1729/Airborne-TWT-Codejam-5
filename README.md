@@ -29,6 +29,12 @@
 <img src="images/Screenshot (101).png" >
 <img src="images/Screenshot (94).png" >
 
+## Technologies
+**Backend**: Django (Python3) for building the server,  SQLite3 for the database
+**Frontend**: Used Vanilla HTML, CSS and JS
+
+I used the OpenWeatherMap API for retrieving weather data for the locations
+
 ## 1. [Locations Page/ Home Page](https://airborne.kk1729.repl.co/all)
 
     - You can see all the locations in the database and search/filter for particular
