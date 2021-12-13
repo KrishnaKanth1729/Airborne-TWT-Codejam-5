@@ -60,6 +60,10 @@
     Setting Up the project on your machine  
 </h1>
 
+
+### Images
+<img src="images/Screenshot(99).png" >
+
 ### Install this repo or clone it and unzip it into a single folder.
 
 <br >
