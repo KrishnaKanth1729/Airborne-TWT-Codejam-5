@@ -21,6 +21,14 @@
 
 <h3 align="center" style="color: orange"> Dicover the best hand-picked holiday spots from a database of over 45 locations from around the world at the <a href="https://airborne.kk1729.repl.co/">Website</a></h3>
 
+<h1 align="center" >Images</h1>
+<img src="images/Screenshot (93).png" >
+<img src="images/Screenshot (95).png" >
+<img src="images/Screenshot (97).png" >
+<img src="images/Screenshot (100).png" >
+<img src="images/Screenshot (101).png" >
+<img src="images/Screenshot (94).png" >
+
 ## 1. [Locations Page/ Home Page](https://airborne.kk1729.repl.co/all)
 
     - You can see all the locations in the database and search/filter for particular
@@ -61,13 +69,6 @@
 </h1>
 
 
-### Images
-<img src="images/Screenshot (93).png" >
-<img src="images/Screenshot (95).png" >
-<img src="images/Screenshot (97).png" >
-<img src="images/Screenshot (100).png" >
-<img src="images/Screenshot (101).png" >
-<img src="images/Screenshot (94).png" >
 ### Install this repo or clone it and unzip it into a single folder.
 
 <br >
