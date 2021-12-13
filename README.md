@@ -22,7 +22,7 @@
 <h3 align="center" style="color: orange"> Dicover the best hand-picked holiday spots from a database of over 45 locations from around the world at the <a href="https://airborne.kk1729.repl.co/">Website</a></h3>
 
 <h1 align="center" >Images</h1>
-<img src="images/Screenshot (93).png" >
+<img src="images/Screenshot (93).png" style="border-radius:5rem;">
 <img src="images/Screenshot (95).png" >
 <img src="images/Screenshot (97).png" >
 <img src="images/Screenshot (100).png" >
